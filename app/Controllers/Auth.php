@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Controller;
+use App\Libraries\Hash;
+
 class Auth extends BaseController
 {
     public function __construct()
@@ -64,7 +67,7 @@ class Auth extends BaseController
         if (!$validation) {
             return view('auth/register', ['validation' => $this->validator]);
         } else {
-            // Register use into DB
+            // Register user into DB
             $name = $this->request->getPost('name');
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
@@ -72,13 +75,16 @@ class Auth extends BaseController
             $values = [
                 'name' => $name,
                 'email' => $email,
-                'password' => $password,
+                'password' => Hash::make($password),
             ];
 
             $usersModel = new \App\Models\UsersModel();
             $query = $usersModel->insert($values);
-            if(!$query){
-                return redirect()->back()->with('fail','Something went wrong');
+            if (!$query) {
+                return redirect()->back()->with('fail', 'Something went wrong');
+                // return redirect()->to('register')->with('fail','Something went wrong');
+            } else {
+                return redirect()->to('register')->with('success', 'You are now registered successfully');
             }
         }
     }

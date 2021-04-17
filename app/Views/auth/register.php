@@ -17,24 +17,30 @@
                 <hr>
                 <form action="<?= base_url('auth/save'); ?>" method="post" class="form-control">
                     <?= csrf_field(); ?>
+                    <?php if (!empty(session()->getFlashdata('fail'))) : ?>
+                        <div class="alert alert-danger"><?= session()->getFlashdata('fail'); ?></div>
+                    <?php endif ?>
+                    <?php if (!empty(session()->getFlashdata('success'))) : ?>
+                        <div class="alert alert-success"><?= session()->getFlashdata('success'); ?></div>
+                    <?php endif ?>
                     <label for="" class="form-label">Name</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="name" placeholder="Enter full name" value="<?= set_value('name');?>">
+                        <input type="text" class="form-control" name="name" placeholder="Enter full name" value="<?= set_value('name'); ?>">
                     </div>
                     <div class="text-danger mb-3"><?= isset($validation) ? display_errors($validation, 'name') : ''; ?></div>
                     <label for="" class="form-label">Email</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="email" placeholder="Enter your email" value="<?= set_value('email');?>">
+                        <input type="text" class="form-control" name="email" placeholder="Enter your email" value="<?= set_value('email'); ?>">
                     </div>
                     <div class="text-danger mb-3"><?= isset($validation) ? display_errors($validation, 'email') : ''; ?></div>
                     <label for="" class="form-label">Password</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="password" placeholder="Enter password" value="<?= set_value('password');?>">
+                        <input type="text" class="form-control" name="password" placeholder="Enter password" value="<?= set_value('password'); ?>">
                     </div>
                     <div class="text-danger mb-3"><?= isset($validation) ? display_errors($validation, 'password') : ''; ?></div>
                     <label for="" class="form-label">Confirm Password</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="cpassword" placeholder="Confirm password" value="<?= set_value('cpassword');?>">
+                        <input type="text" class="form-control" name="cpassword" placeholder="Confirm password" value="<?= set_value('cpassword'); ?>">
                     </div>
                     <div class="text-danger mb-3"><?= isset($validation) ? display_errors($validation, 'cpassword') : ''; ?></div>
                     <div class="d-grid mb-3">
