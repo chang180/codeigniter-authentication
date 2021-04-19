@@ -15,20 +15,27 @@
             <div class="col-md-4 offset-md-4">
                 <h4>Sign Up</h4>
                 <hr>
-                <form action="" class="form-control">
+                <form action="<?= base_url('auth/check'); ?>" method="post" class="form-control">
+                <?= csrf_field(); ?>
+
+                <?php if(!empty(session()->getFlashdata('fail'))) : ?>
+                <div class="alert alert-danger"><?=session()->getFlashdata('fail');?></div>
+                <?php endif ?>
                     <label for="" class="form-label">Email</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="email" placeholder="Enter your email">
+                        <input type="text" class="form-control" name="email" placeholder="Enter your email" value="<?= set_value('email'); ?>">
                     </div>
+                    <div class="text-danger"><?= isset($validation) ? display_errors($validation, 'email') : '' ?></div>
                     <label for="" class="form-label">Password</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="password" placeholder="Enter password">
+                        <input type="text" class="form-control" name="password" placeholder="Enter password" value="<?= set_value('password'); ?>">
                     </div>
+                    <div class="text-danger"><?= isset($validation) ? display_errors($validation, 'password') : '' ?></div>
                     <div class="d-grid mb-3">
-                        <button class="btn btn-primary">Sign In</button>
+                        <button class="btn btn-primary btn-block" type="submit">Sign In</button>
                     </div>
                     <br>
-                    <a href="<?=site_url('auth/register');?>" class="text-decoration-none">Have no account, creat new account</a>
+                    <a href="<?= site_url('auth/register'); ?>" class="text-decoration-none">Have no account, creat new account</a>
                 </form>
             </div>
         </div>
