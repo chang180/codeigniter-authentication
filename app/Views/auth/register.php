@@ -15,7 +15,7 @@
             <div class="col-md-4 offset-md-4">
                 <h4>Sign In</h4>
                 <hr>
-                <form action="<?= base_url('auth/save'); ?>" method="post" class="form-control">
+                <form action="<?= base_url('auth/save'); ?>" method="post" class="form-control" autocomplete="off">
                     <?= csrf_field(); ?>
                     <?php if (!empty(session()->getFlashdata('fail'))) : ?>
                         <div class="alert alert-danger"><?= session()->getFlashdata('fail'); ?></div>
@@ -35,12 +35,12 @@
                     <div class="text-danger mb-3"><?= isset($validation) ? display_errors($validation, 'email') : ''; ?></div>
                     <label for="" class="form-label">Password</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="password" placeholder="Enter password" value="<?= set_value('password'); ?>">
+                        <input type="password" class="form-control" name="password" placeholder="Enter password" value="<?= set_value('password'); ?>">
                     </div>
                     <div class="text-danger mb-3"><?= isset($validation) ? display_errors($validation, 'password') : ''; ?></div>
                     <label for="" class="form-label">Confirm Password</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="cpassword" placeholder="Confirm password" value="<?= set_value('cpassword'); ?>">
+                        <input type="password" class="form-control" name="cpassword" placeholder="Confirm password" value="<?= set_value('cpassword'); ?>">
                     </div>
                     <div class="text-danger mb-3"><?= isset($validation) ? display_errors($validation, 'cpassword') : ''; ?></div>
                     <div class="d-grid mb-3">

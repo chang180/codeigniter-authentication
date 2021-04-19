@@ -84,7 +84,14 @@ class Auth extends BaseController
                 return redirect()->back()->with('fail', 'Something went wrong');
                 // return redirect()->to('register')->with('fail','Something went wrong');
             } else {
-                return redirect()->to('register')->with('success', 'You are now registered successfully');
+                // back to register page with success message
+                // return redirect()->to('register')->with('success', 'You are now registered successfully');
+
+                // direct to dashboard
+                $last_id=$usersModel->insertID();//This is the last inserted id
+                session()->set ('loggedUser',$last_id );
+                return redirect()->to('/dashboard');
+
             }
         }
     }

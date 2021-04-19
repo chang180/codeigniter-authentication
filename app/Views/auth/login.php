@@ -15,7 +15,7 @@
             <div class="col-md-4 offset-md-4">
                 <h4>Sign Up</h4>
                 <hr>
-                <form action="<?= base_url('auth/check'); ?>" method="post" class="form-control">
+                <form action="<?= base_url('auth/check'); ?>" method="post" class="form-control" autocomplete="off">
                 <?= csrf_field(); ?>
 
                 <?php if(!empty(session()->getFlashdata('fail'))) : ?>
@@ -28,7 +28,7 @@
                     <div class="text-danger"><?= isset($validation) ? display_errors($validation, 'email') : '' ?></div>
                     <label for="" class="form-label">Password</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="password" placeholder="Enter password" value="<?= set_value('password'); ?>">
+                        <input type="password" class="form-control" name="password" placeholder="Enter password" value="<?= set_value('password'); ?>">
                     </div>
                     <div class="text-danger"><?= isset($validation) ? display_errors($validation, 'password') : '' ?></div>
                     <div class="d-grid mb-3">
