@@ -26,7 +26,7 @@
                     <tr>
                         <td><?= ucfirst($userInfo['name']);?></td>
                         <td><?= $userInfo['email'];?></td>
-                        <td><a href="<?= site_url('auth/lougout');?>">Logout</a> </td>
+                        <td><a href="<?= site_url('auth/logout');?>">Logout</a> </td>
                     </tr>
                 </tbody>
                 </table>
